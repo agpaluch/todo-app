@@ -1,18 +1,23 @@
 package io.github.agpaluch.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "tasks")
 class Task {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotBlank(message = "Task's description must not be empty.")
     private String description;
     private boolean done;
 
-    int getId() {
+    Task() {
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -20,7 +25,8 @@ class Task {
         this.id = id;
     }
 
-    String getDescription() {
+
+    public String getDescription() {
         return description;
     }
 
@@ -28,7 +34,7 @@ class Task {
         this.description = description;
     }
 
-    boolean isDone() {
+    public boolean isDone() {
         return done;
     }
 

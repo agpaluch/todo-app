@@ -1,4 +1,116 @@
-GET http://localhost:8080/tasks?id=1
-Accept: application/json
+###
+###Create task 1
+POST http://localhost:8080/tasks
+Content-Type: application/json
+
+{
+"done": true,
+"description": "tests with Http Client"
+}
+
+###
+#Create task 2
+POST http://localhost:8080/tasks
+Content-Type: application/json
+
+{
+  "done": false,
+  "description": "test all operations"
+}
+
+###Create task 3
+POST http://localhost:8080/tasks
+Content-Type: application/json
+
+{
+  "done": false,
+  "description": "Validate model"
+}
+
+###Create task 4
+POST http://localhost:8080/tasks
+Content-Type: application/json
+
+{
+  "done": false,
+  "description": "abc"
+}
+
+###Create empty task - returns status 400 (bad request)
+POST http://localhost:8080/tasks
+Content-Type: application/json
+
+{
+  "done": false,
+  "description": " "
+}
+
+
+### Partial update task 5
+PATCH http://localhost:8080/tasks/5
+Content-Type: application/json
+
+{
+"description": "Def"
+}
+
+
+### Update task 4
+PUT http://localhost:8080/tasks/4
+Content-Type: application/json
+
+{
+  "done": false,
+  "description": "ABC"
+}
+
+
+
+###Read tasks
+GET http://localhost:8080/tasks
+Accept: */*
+
+###Read sorted tasks
+GET http://localhost:8080/tasks?sort=description,desc
+Accept: */*
+
+
+###Read tasks with pagination (numbering starts with 0)
+GET http://localhost:8080/tasks?page=0&size=3
+Accept: */*
+
+
+###Delete task
+DELETE http://localhost:8080/tasks/2
+Accept: */*
+
+
+###Testy
+### Successful test: check response status is 400 when task with empty body is trying to be created
+POST http://localhost:8080/tasks
+Content-Type: application/json
+
+{
+  "done": false,
+  "description": " "
+}
+
+> {%
+client.test("Status code is 400", function() {
+  client.assert(response.status === 400, "Response status is 400");
+});
+%}
+
+
+
+
+
+
+
+
+
+
+
+
 
 ###Ctrl + Shift + Alt + Insert to generate scratch file
