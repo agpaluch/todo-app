@@ -45,6 +45,16 @@ Content-Type: application/json
   "description": " "
 }
 
+###Create task with deadline
+POST http://localhost:8080/tasks
+Content-Type: application/json
+
+{
+  "done": false,
+  "description": "Learn JPA",
+  "deadline": "2021-12-23T23:59:59.999"
+}
+
 
 ### Partial update task 5
 PATCH http://localhost:8080/tasks/5
@@ -54,6 +64,11 @@ Content-Type: application/json
 "description": "Def"
 }
 
+### Partial update task 1 (toggle done)
+PATCH http://localhost:8080/tasks/4
+Content-Type: application/json
+
+
 
 ### Update task 4
 PUT http://localhost:8080/tasks/4
@@ -61,9 +76,9 @@ Content-Type: application/json
 
 {
   "done": false,
-  "description": "abc"
+  "description": "Learn JPA",
+  "deadline": "2019-12-23T23:59:59.999"
 }
-
 
 
 
