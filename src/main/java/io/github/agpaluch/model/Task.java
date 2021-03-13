@@ -1,5 +1,6 @@
 package io.github.agpaluch.model;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
